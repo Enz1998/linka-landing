@@ -2,18 +2,21 @@ const tools = ["n8n", "OpenAI", "Claude", "Zapier", "Google Workspace", "Make", 
 
 export function ToolStack() {
   return (
-    <section className="border-b border-surface-border bg-surface-muted py-10">
-      <div className="mx-auto max-w-6xl px-6">
-        <p className="text-center font-mono text-xs uppercase tracking-[0.2em] text-ink-600">
+    <section className="overflow-hidden border-b border-line bg-paper-muted py-9">
+      <div className="mx-auto max-w-5xl px-6">
+        <p className="text-center text-xs font-medium tracking-[0.14em] text-muted-on-paper uppercase">
           Trabajamos con las herramientas líderes del mercado
         </p>
-        <ul className="mt-6 flex flex-wrap items-center justify-center gap-x-10 gap-y-4">
-          {tools.map((tool) => (
-            <li key={tool} className="text-base font-medium text-ink-600/80">
+      </div>
+
+      <div className="group relative mt-6 [mask-image:linear-gradient(to_right,transparent,black_10%,black_90%,transparent)]">
+        <div className="flex w-max animate-marquee gap-16 group-hover:[animation-play-state:paused] motion-reduce:animate-none">
+          {[...tools, ...tools].map((tool, i) => (
+            <span key={`${tool}-${i}`} className="text-base whitespace-nowrap text-ink-800/70">
               {tool}
-            </li>
+            </span>
           ))}
-        </ul>
+        </div>
       </div>
     </section>
   );

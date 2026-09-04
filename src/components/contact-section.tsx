@@ -1,8 +1,8 @@
 "use client";
 
 import { useState, type FormEvent } from "react";
-import { CalendarClock, Mail, MessageCircle, Send } from "lucide-react";
 import { siteConfig } from "@/lib/site-config";
+import { Reveal } from "./reveal";
 import { SectionHeading } from "./section-heading";
 
 type Status = "idle" | "loading" | "success" | "error";
@@ -37,59 +37,44 @@ export function ContactSection() {
   }
 
   return (
-    <section id="contacto" className="scroll-mt-20 py-24 sm:py-32">
-      <div className="mx-auto max-w-6xl px-6">
-        <SectionHeading
-          eyebrow="Contacto"
-          title="Empecemos por un diagnóstico gratuito"
-          description="Contanos brevemente qué proceso te gustaría automatizar. Respondemos en menos de 24hs hábiles."
-        />
+    <section id="contacto" className="scroll-mt-20 py-24 sm:py-28">
+      <div className="mx-auto max-w-5xl px-6">
+        <Reveal>
+          <SectionHeading
+            align="left"
+            eyebrow="Contacto"
+            title="Empecemos por un diagnóstico gratuito"
+            description="Contanos brevemente qué proceso te gustaría automatizar. Respondemos en menos de 24hs hábiles."
+          />
+        </Reveal>
 
-        <div className="mt-16 grid gap-10 lg:grid-cols-5">
-          <div className="flex flex-col gap-6 lg:col-span-2">
-            <a
-              href={siteConfig.calendlyUrl}
-              target="_blank"
-              rel="noopener noreferrer"
-              className="flex items-center gap-4 rounded-2xl border border-surface-border bg-white p-6 shadow-sm transition-shadow hover:shadow-md"
-            >
-              <CalendarClock className="h-6 w-6 shrink-0 text-accent-indigo" aria-hidden="true" />
-              <div>
-                <p className="font-semibold text-ink-900">Agendar una llamada</p>
-                <p className="text-sm text-ink-600">Elegí un horario para una charla de diagnóstico, sin costo.</p>
-              </div>
+        <div className="mt-14 grid gap-12 border-t border-line pt-12 lg:grid-cols-5">
+          <Reveal className="flex flex-col gap-8 lg:col-span-2">
+            <a href={siteConfig.calendlyUrl} target="_blank" rel="noopener noreferrer" className="group flex flex-col gap-1">
+              <p className="font-serif text-lg text-ink-900 transition-transform duration-200 group-hover:translate-x-1 group-hover:text-accent">
+                Agendar una llamada
+              </p>
+              <p className="text-sm text-muted-on-paper">Elegí un horario para una charla de diagnóstico, sin costo.</p>
             </a>
 
-            <a
-              href={whatsappHref}
-              target="_blank"
-              rel="noopener noreferrer"
-              className="flex items-center gap-4 rounded-2xl border border-surface-border bg-white p-6 shadow-sm transition-shadow hover:shadow-md"
-            >
-              <MessageCircle className="h-6 w-6 shrink-0 text-accent-indigo" aria-hidden="true" />
-              <div>
-                <p className="font-semibold text-ink-900">WhatsApp</p>
-                <p className="text-sm text-ink-600">{siteConfig.whatsapp.display}</p>
-              </div>
+            <a href={whatsappHref} target="_blank" rel="noopener noreferrer" className="group flex flex-col gap-1">
+              <p className="font-serif text-lg text-ink-900 transition-transform duration-200 group-hover:translate-x-1 group-hover:text-accent">
+                WhatsApp
+              </p>
+              <p className="text-sm text-muted-on-paper">{siteConfig.whatsapp.display}</p>
             </a>
 
-            <a
-              href={`mailto:${siteConfig.contactEmail}`}
-              className="flex items-center gap-4 rounded-2xl border border-surface-border bg-white p-6 shadow-sm transition-shadow hover:shadow-md"
-            >
-              <Mail className="h-6 w-6 shrink-0 text-accent-indigo" aria-hidden="true" />
-              <div>
-                <p className="font-semibold text-ink-900">Email</p>
-                <p className="text-sm text-ink-600">{siteConfig.contactEmail}</p>
-              </div>
+            <a href={`mailto:${siteConfig.contactEmail}`} className="group flex flex-col gap-1">
+              <p className="font-serif text-lg text-ink-900 transition-transform duration-200 group-hover:translate-x-1 group-hover:text-accent">
+                Email
+              </p>
+              <p className="text-sm text-muted-on-paper">{siteConfig.contactEmail}</p>
             </a>
-          </div>
+          </Reveal>
 
-          <form
-            onSubmit={handleSubmit}
-            className="flex flex-col gap-4 rounded-2xl border border-surface-border bg-white p-8 shadow-sm lg:col-span-3"
-          >
-            <div className="grid gap-4 sm:grid-cols-2">
+          <Reveal delay={120} className="lg:col-span-3">
+          <form onSubmit={handleSubmit} className="flex flex-col gap-5">
+            <div className="grid gap-5 sm:grid-cols-2">
               <label className="flex flex-col gap-1.5 text-sm font-medium text-ink-900">
                 Nombre
                 <input
@@ -97,7 +82,7 @@ export function ContactSection() {
                   name="name"
                   type="text"
                   autoComplete="name"
-                  className="rounded-lg border border-surface-border px-4 py-2.5 text-sm text-ink-900 outline-none focus:border-accent-indigo focus:ring-2 focus:ring-accent-indigo/20"
+                  className="border-0 border-b border-line bg-transparent px-0 py-2 text-sm text-ink-900 outline-none transition-colors duration-200 focus:border-ink-900"
                 />
               </label>
               <label className="flex flex-col gap-1.5 text-sm font-medium text-ink-900">
@@ -107,7 +92,7 @@ export function ContactSection() {
                   name="email"
                   type="email"
                   autoComplete="email"
-                  className="rounded-lg border border-surface-border px-4 py-2.5 text-sm text-ink-900 outline-none focus:border-accent-indigo focus:ring-2 focus:ring-accent-indigo/20"
+                  className="border-0 border-b border-line bg-transparent px-0 py-2 text-sm text-ink-900 outline-none transition-colors duration-200 focus:border-ink-900"
                 />
               </label>
             </div>
@@ -118,7 +103,7 @@ export function ContactSection() {
                 name="company"
                 type="text"
                 autoComplete="organization"
-                className="rounded-lg border border-surface-border px-4 py-2.5 text-sm text-ink-900 outline-none focus:border-accent-indigo focus:ring-2 focus:ring-accent-indigo/20"
+                className="border-0 border-b border-line bg-transparent px-0 py-2 text-sm text-ink-900 outline-none transition-colors duration-200 focus:border-ink-900"
               />
             </label>
 
@@ -127,31 +112,31 @@ export function ContactSection() {
               <textarea
                 required
                 name="message"
-                rows={4}
-                className="resize-none rounded-lg border border-surface-border px-4 py-2.5 text-sm text-ink-900 outline-none focus:border-accent-indigo focus:ring-2 focus:ring-accent-indigo/20"
+                rows={3}
+                className="resize-none border-0 border-b border-line bg-transparent px-0 py-2 text-sm text-ink-900 outline-none transition-colors duration-200 focus:border-ink-900"
               />
             </label>
 
             <button
               type="submit"
               disabled={status === "loading"}
-              className="mt-2 inline-flex items-center justify-center gap-2 rounded-full bg-ink-900 px-6 py-3 text-sm font-semibold text-white transition-transform hover:scale-[1.02] disabled:cursor-not-allowed disabled:opacity-60"
+              className="mt-3 inline-flex w-fit items-center justify-center gap-2 bg-ink-900 px-7 py-3.5 text-sm font-medium text-white transition-all duration-200 hover:-translate-y-0.5 hover:bg-ink-700 disabled:cursor-not-allowed disabled:translate-y-0 disabled:opacity-60"
             >
               {status === "loading" ? "Enviando..." : "Enviar mensaje"}
-              <Send className="h-4 w-4" aria-hidden="true" />
             </button>
 
             {status === "success" ? (
-              <p role="status" className="text-sm text-emerald-600">
+              <p role="status" className="animate-fade-in text-sm font-medium text-accent">
                 ¡Gracias! Recibimos tu mensaje y te respondemos a la brevedad.
               </p>
             ) : null}
             {status === "error" ? (
-              <p role="alert" className="text-sm text-red-600">
+              <p role="alert" className="animate-fade-in text-sm text-red-700">
                 Hubo un problema al enviar el mensaje. Escribinos por WhatsApp mientras tanto.
               </p>
             ) : null}
           </form>
+          </Reveal>
         </div>
       </div>
     </section>

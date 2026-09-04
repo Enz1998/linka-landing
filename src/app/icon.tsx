@@ -17,11 +17,11 @@ export default function Icon() {
           alignItems: "center",
           justifyContent: "center",
           borderRadius: 7,
-          background: "linear-gradient(135deg, #4f46e5, #06b6d4)",
+          background: "#d97b54",
           color: "white",
           fontSize: 18,
-          fontWeight: 700,
-          fontFamily: "monospace",
+          fontWeight: 600,
+          fontStyle: "italic",
         }}
       >
         l.

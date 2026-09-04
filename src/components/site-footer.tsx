@@ -1,17 +1,15 @@
 import { Mail, MapPin } from "lucide-react";
 import { siteConfig } from "@/lib/site-config";
 import { LinkedinIcon } from "./icons";
+import { Logo } from "./logo";
 
 export function SiteFooter() {
   return (
-    <footer className="border-t border-white/10 bg-ink-950 py-14 text-slate-400">
-      <div className="mx-auto flex max-w-6xl flex-col gap-10 px-6 sm:flex-row sm:items-start sm:justify-between">
+    <footer className="border-t border-line-dark bg-ink-950 py-14 text-muted-on-dark">
+      <div className="mx-auto flex max-w-5xl flex-col gap-10 px-6 sm:flex-row sm:items-start sm:justify-between">
         <div className="flex flex-col gap-3">
-          <a href="#top" className="flex items-center gap-2 text-lg font-semibold text-white">
-            <span className="flex h-8 w-8 items-center justify-center rounded-lg bg-gradient-to-br from-accent-indigo to-accent-cyan font-mono text-sm text-white">
-              l.
-            </span>
-            {siteConfig.name}
+          <a href="#top">
+            <Logo light />
           </a>
           <p className="max-w-xs text-sm leading-relaxed">{siteConfig.tagline}</p>
         </div>
@@ -45,7 +43,7 @@ export function SiteFooter() {
         </div>
       </div>
 
-      <div className="mx-auto mt-10 max-w-6xl px-6 text-xs text-slate-600">
+      <div className="mx-auto mt-10 max-w-5xl px-6 text-xs text-muted-on-dark/60">
         © {new Date().getFullYear()} {siteConfig.legalName}. Todos los derechos reservados.
       </div>
     </footer>

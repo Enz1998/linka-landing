@@ -1,6 +1,7 @@
-import { ArrowRight, MessageCircle } from "lucide-react";
+import { ArrowUpRight } from "lucide-react";
 import { siteConfig } from "@/lib/site-config";
-import { WorkflowGraphic } from "./workflow-graphic";
+import { Reveal } from "./reveal";
+import { RobotIllustration } from "./robot-illustration";
 
 export function Hero() {
   const whatsappHref = `https://wa.me/${siteConfig.whatsapp.number}?text=${encodeURIComponent(
@@ -8,53 +9,61 @@ export function Hero() {
   )}`;
 
   return (
-    <section id="top" className="relative overflow-hidden bg-ink-900 pt-16 pb-24 sm:pt-24 sm:pb-32">
-      <div className="bg-grid pointer-events-none absolute inset-0 [mask-image:radial-gradient(ellipse_60%_60%_at_50%_0%,black,transparent)]" />
-      <div
-        className="pointer-events-none absolute -top-32 left-1/2 h-96 w-[42rem] -translate-x-1/2 rounded-full bg-accent-indigo/30 blur-3xl"
-        aria-hidden="true"
-      />
+    <section id="top" className="border-b border-line-dark bg-ink-900 pt-20 pb-16 sm:pt-24 sm:pb-20">
+      <div className="mx-auto grid max-w-5xl items-center gap-16 px-6 lg:grid-cols-[1.1fr_0.9fr] lg:gap-8">
+        <div className="flex flex-col gap-8 text-center lg:text-left">
+          <Reveal delay={0}>
+            <span className="text-xs font-medium tracking-[0.14em] text-muted-on-dark uppercase">
+              Consultora de procesos — n8n · IA · desarrollo a medida
+            </span>
+          </Reveal>
 
-      <div className="relative mx-auto flex max-w-6xl flex-col items-center gap-12 px-6 text-center">
-        <span className="inline-flex items-center gap-2 rounded-full border border-white/15 bg-white/5 px-4 py-1.5 font-mono text-xs uppercase tracking-[0.2em] text-cyan-300">
-          Consultora de procesos · n8n · IA
-        </span>
+          <Reveal delay={100}>
+            <h1 className="font-serif text-[2.4rem] leading-[1.08] font-medium tracking-tight text-balance text-white sm:text-5xl md:text-[3.4rem]">
+              Automatizamos los procesos que le roban tiempo a tu empresa
+            </h1>
+          </Reveal>
 
-        <h1 className="max-w-3xl text-4xl font-semibold tracking-tight text-balance text-white sm:text-5xl md:text-6xl">
-          Automatizamos los procesos que le roban tiempo a tu empresa
-        </h1>
+          <Reveal delay={220}>
+            <p className="max-w-xl text-lg leading-relaxed text-pretty text-muted-on-dark lg:max-w-none">
+              Combinamos workflows con n8n, inteligencia artificial y desarrollo a medida para que tu
+              equipo deje las tareas repetitivas y se enfoque en lo que realmente genera valor.
+            </p>
+          </Reveal>
 
-        <p className="max-w-2xl text-lg leading-relaxed text-pretty text-slate-300 sm:text-xl">
-          Combinamos workflows con n8n, inteligencia artificial y desarrollo a medida para que tu
-          equipo deje las tareas repetitivas y se enfoque en lo que realmente genera valor.
-        </p>
+          <Reveal delay={340}>
+            <div className="flex flex-col items-center gap-4 sm:flex-row sm:justify-center lg:justify-start">
+              <a
+                href="#contacto"
+                className="group inline-flex items-center gap-2 bg-white px-7 py-3.5 text-sm font-medium text-ink-900 transition-colors hover:bg-paper-muted"
+              >
+                Agendar diagnóstico gratuito
+                <ArrowUpRight
+                  className="h-4 w-4 transition-transform duration-300 group-hover:translate-x-0.5 group-hover:-translate-y-0.5"
+                  aria-hidden="true"
+                />
+              </a>
+              <a
+                href={whatsappHref}
+                target="_blank"
+                rel="noopener noreferrer"
+                className="inline-flex items-center gap-2 border border-line-dark px-7 py-3.5 text-sm font-medium text-white transition-colors hover:border-white/40 hover:bg-white/5"
+              >
+                Hablar por WhatsApp
+              </a>
+            </div>
+          </Reveal>
 
-        <div className="flex flex-col items-center gap-4 sm:flex-row">
-          <a
-            href="#contacto"
-            className="inline-flex items-center gap-2 rounded-full bg-gradient-to-r from-accent-indigo to-accent-cyan px-7 py-3.5 text-sm font-semibold text-white shadow-lg shadow-accent-indigo/30 transition-transform hover:scale-105"
-          >
-            Agendar diagnóstico gratuito
-            <ArrowRight className="h-4 w-4" aria-hidden="true" />
-          </a>
-          <a
-            href={whatsappHref}
-            target="_blank"
-            rel="noopener noreferrer"
-            className="inline-flex items-center gap-2 rounded-full border border-white/20 px-7 py-3.5 text-sm font-semibold text-white transition-colors hover:bg-white/10"
-          >
-            <MessageCircle className="h-4 w-4" aria-hidden="true" />
-            Hablar por WhatsApp
-          </a>
+          <Reveal delay={420}>
+            <p className="text-xs tracking-wide text-muted-on-dark/70 uppercase">
+              Sin compromiso · Diagnóstico inicial gratuito · Respuesta en 24hs hábiles
+            </p>
+          </Reveal>
         </div>
 
-        <p className="font-mono text-xs uppercase tracking-widest text-slate-500">
-          Sin compromiso · Diagnóstico inicial gratuito · Respuesta en 24hs hábiles
-        </p>
-
-        <div className="mt-4 w-full">
-          <WorkflowGraphic />
-        </div>
+        <Reveal delay={200}>
+          <RobotIllustration />
+        </Reveal>
       </div>
     </section>
   );

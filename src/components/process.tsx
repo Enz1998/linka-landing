@@ -1,3 +1,4 @@
+import { Reveal } from "./reveal";
 import { SectionHeading } from "./section-heading";
 
 const steps = [
@@ -25,27 +26,27 @@ const steps = [
 
 export function Process() {
   return (
-    <section id="como-trabajamos" className="scroll-mt-20 bg-surface-muted py-24 sm:py-32">
-      <div className="mx-auto max-w-6xl px-6">
-        <SectionHeading
-          eyebrow="Metodología"
-          title="Cómo trabajamos"
-          description="Un proceso simple, pensado para avanzar rápido sin perder el rigor de una consultora tradicional."
-        />
+    <section id="como-trabajamos" className="scroll-mt-20 border-y border-line bg-paper-muted py-24 sm:py-28">
+      <div className="mx-auto max-w-5xl px-6">
+        <Reveal>
+          <SectionHeading
+            eyebrow="Metodología"
+            title="Cómo trabajamos"
+            description="Un proceso simple, pensado para avanzar rápido sin perder el rigor de una consultora tradicional."
+          />
+        </Reveal>
 
-        <div className="mt-16 grid gap-8 sm:grid-cols-2 lg:grid-cols-4">
+        <div className="mt-16 grid gap-10 sm:grid-cols-2 lg:grid-cols-4">
           {steps.map((step, i) => (
-            <div key={step.number} className="relative flex flex-col gap-3">
-              <span className="font-mono text-4xl font-semibold text-accent-indigo/25">{step.number}</span>
-              <h3 className="text-lg font-semibold text-ink-900">{step.title}</h3>
-              <p className="text-sm leading-relaxed text-ink-600">{step.description}</p>
-              {i < steps.length - 1 ? (
-                <span
-                  className="absolute top-5 -right-4 hidden h-px w-8 bg-surface-border lg:block"
-                  aria-hidden="true"
-                />
-              ) : null}
-            </div>
+            <Reveal key={step.number} delay={i * 90}>
+              <div className="group flex flex-col gap-3 border-t border-ink-900/15 pt-5 transition-colors duration-300 hover:border-accent">
+                <span className="font-serif text-2xl text-ink-900/40 transition-colors duration-300 group-hover:text-accent">
+                  {step.number}
+                </span>
+                <h3 className="text-base font-medium text-ink-900">{step.title}</h3>
+                <p className="text-sm leading-relaxed text-muted-on-paper">{step.description}</p>
+              </div>
+            </Reveal>
           ))}
         </div>
       </div>

@@ -1,8 +1,8 @@
-import { Workflow, Bot, Calculator, Code2, type LucideIcon } from "lucide-react";
+import { Reveal } from "./reveal";
 import { SectionHeading } from "./section-heading";
 
 type Service = {
-  icon: LucideIcon;
+  number: string;
   title: string;
   description: string;
   outcomes: string[];
@@ -10,7 +10,7 @@ type Service = {
 
 const services: Service[] = [
   {
-    icon: Workflow,
+    number: "01",
     title: "Automatización de workflows con n8n",
     description:
       "Conectamos tus herramientas (CRM, ERP, planillas, email, WhatsApp) para que la información fluya sola, sin cargas manuales.",
@@ -21,7 +21,7 @@ const services: Service[] = [
     ],
   },
   {
-    icon: Bot,
+    number: "02",
     title: "Agentes y soluciones de IA",
     description:
       "Implementamos IA generativa para atención al cliente, procesamiento de documentos y análisis de datos aplicados a tu operación.",
@@ -32,7 +32,7 @@ const services: Service[] = [
     ],
   },
   {
-    icon: Calculator,
+    number: "03",
     title: "Automatización contable y administrativa",
     description:
       "Procesos de facturación, conciliaciones y reportes automatizados, con la mirada de un perfil que vivió estos problemas de adentro.",
@@ -43,7 +43,7 @@ const services: Service[] = [
     ],
   },
   {
-    icon: Code2,
+    number: "04",
     title: "Desarrollo a medida",
     description:
       "Cuando el no-code no alcanza, desarrollamos scripts, integraciones y APIs a medida de tu operación.",
@@ -57,34 +57,40 @@ const services: Service[] = [
 
 export function Services() {
   return (
-    <section id="servicios" className="scroll-mt-20 py-24 sm:py-32">
-      <div className="mx-auto max-w-6xl px-6">
-        <SectionHeading
-          eyebrow="Servicios"
-          title="Cuatro formas de sacarle horas manuales a tu operación"
-          description="No vendemos una herramienta puntual: diagnosticamos el proceso y elegimos la combinación de n8n, IA y desarrollo que mejor resuelve tu caso."
-        />
+    <section id="servicios" className="scroll-mt-20 py-24 sm:py-28">
+      <div className="mx-auto max-w-5xl px-6">
+        <Reveal>
+          <SectionHeading
+            align="left"
+            eyebrow="Servicios"
+            title="Cuatro formas de sacarle horas manuales a tu operación"
+            description="No vendemos una herramienta puntual: diagnosticamos el proceso y elegimos la combinación de n8n, IA y desarrollo que mejor lo resuelve."
+          />
+        </Reveal>
 
-        <div className="mt-16 grid gap-6 sm:grid-cols-2">
-          {services.map((service) => (
-            <div
-              key={service.title}
-              className="group flex flex-col gap-4 rounded-2xl border border-surface-border bg-white p-8 shadow-sm transition-shadow hover:shadow-md"
-            >
-              <div className="flex h-12 w-12 items-center justify-center rounded-xl bg-gradient-to-br from-accent-indigo to-accent-cyan text-white">
-                <service.icon className="h-6 w-6" aria-hidden="true" />
+        <div className="mt-16 flex flex-col divide-y divide-line border-t border-line">
+          {services.map((service, i) => (
+            <Reveal key={service.number} delay={i * 80}>
+              <div className="group grid gap-6 py-10 transition-[padding] duration-300 sm:grid-cols-[auto_1fr] sm:gap-12 sm:hover:pl-3">
+                <span className="font-serif text-3xl text-muted-on-paper/50 transition-colors duration-300 group-hover:text-accent">
+                  {service.number}
+                </span>
+                <div className="grid gap-6 sm:grid-cols-2 sm:gap-10">
+                  <div className="flex flex-col gap-3">
+                    <h3 className="font-serif text-xl text-ink-900">{service.title}</h3>
+                    <p className="text-sm leading-relaxed text-muted-on-paper">{service.description}</p>
+                  </div>
+                  <ul className="flex flex-col gap-2.5 self-start">
+                    {service.outcomes.map((outcome) => (
+                      <li key={outcome} className="flex items-baseline gap-2.5 text-sm text-ink-800">
+                        <span className="h-px w-3 shrink-0 bg-accent" aria-hidden="true" />
+                        {outcome}
+                      </li>
+                    ))}
+                  </ul>
+                </div>
               </div>
-              <h3 className="text-xl font-semibold text-ink-900">{service.title}</h3>
-              <p className="text-ink-600 leading-relaxed">{service.description}</p>
-              <ul className="mt-2 flex flex-col gap-2 border-t border-surface-border pt-4">
-                {service.outcomes.map((outcome) => (
-                  <li key={outcome} className="flex items-start gap-2 text-sm text-ink-600">
-                    <span className="mt-2 h-1.5 w-1.5 shrink-0 rounded-full bg-accent-cyan" aria-hidden="true" />
-                    {outcome}
-                  </li>
-                ))}
-              </ul>
-            </div>
+            </Reveal>
           ))}
         </div>
       </div>

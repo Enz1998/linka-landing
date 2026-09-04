@@ -1,8 +1,8 @@
 "use client";
 
 import { useState } from "react";
-import { Menu, X, ArrowRight } from "lucide-react";
-import { siteConfig } from "@/lib/site-config";
+import { Menu, X } from "lucide-react";
+import { Logo } from "./logo";
 
 const navLinks = [
   { href: "#servicios", label: "Servicios" },
@@ -15,13 +15,10 @@ export function SiteHeader() {
   const [open, setOpen] = useState(false);
 
   return (
-    <header className="sticky top-0 z-50 border-b border-white/10 bg-ink-900/80 backdrop-blur supports-backdrop-blur:bg-ink-900/60">
-      <div className="mx-auto flex max-w-6xl items-center justify-between px-6 py-4">
-        <a href="#top" className="flex items-center gap-2 text-lg font-semibold text-white">
-          <span className="flex h-8 w-8 items-center justify-center rounded-lg bg-gradient-to-br from-accent-indigo to-accent-cyan font-mono text-sm text-white">
-            l.
-          </span>
-          {siteConfig.name}
+    <header className="sticky top-0 z-50 border-b border-line-dark bg-ink-900">
+      <div className="mx-auto flex max-w-5xl items-center justify-between px-6 py-4">
+        <a href="#top">
+          <Logo light />
         </a>
 
         <nav className="hidden items-center gap-8 md:flex" aria-label="Navegación principal">
@@ -29,9 +26,10 @@ export function SiteHeader() {
             <a
               key={link.href}
               href={link.href}
-              className="text-sm text-slate-300 transition-colors hover:text-white"
+              className="group relative text-sm text-muted-on-dark transition-colors hover:text-white"
             >
               {link.label}
+              <span className="absolute -bottom-1 left-0 h-px w-0 bg-brand transition-all duration-300 group-hover:w-full" />
             </a>
           ))}
         </nav>
@@ -39,17 +37,16 @@ export function SiteHeader() {
         <div className="hidden md:block">
           <a
             href="#contacto"
-            className="inline-flex items-center gap-2 rounded-full bg-white px-5 py-2.5 text-sm font-medium text-ink-900 transition-transform hover:scale-105"
+            className="inline-flex items-center gap-2 bg-white px-5 py-2.5 text-sm font-medium text-ink-900 transition-transform duration-200 hover:-translate-y-0.5 hover:bg-paper-muted"
           >
             Agendar diagnóstico
-            <ArrowRight className="h-4 w-4" aria-hidden="true" />
           </a>
         </div>
 
         <button
           type="button"
           onClick={() => setOpen((v) => !v)}
-          className="inline-flex items-center justify-center rounded-md p-2 text-white md:hidden"
+          className="inline-flex items-center justify-center p-2 text-white md:hidden"
           aria-expanded={open}
           aria-controls="mobile-menu"
           aria-label={open ? "Cerrar menú" : "Abrir menú"}
@@ -62,7 +59,7 @@ export function SiteHeader() {
         <nav
           id="mobile-menu"
           aria-label="Navegación mobile"
-          className="border-t border-white/10 bg-ink-900 px-6 py-4 md:hidden"
+          className="animate-fade-in border-t border-line-dark bg-ink-900 px-6 py-4 md:hidden"
         >
           <ul className="flex flex-col gap-4">
             {navLinks.map((link) => (
@@ -70,7 +67,7 @@ export function SiteHeader() {
                 <a
                   href={link.href}
                   onClick={() => setOpen(false)}
-                  className="block text-sm text-slate-300 hover:text-white"
+                  className="block text-sm text-muted-on-dark hover:text-white"
                 >
                   {link.label}
                 </a>
@@ -80,10 +77,9 @@ export function SiteHeader() {
               <a
                 href="#contacto"
                 onClick={() => setOpen(false)}
-                className="mt-2 inline-flex items-center gap-2 rounded-full bg-white px-5 py-2.5 text-sm font-medium text-ink-900"
+                className="mt-2 inline-flex items-center gap-2 bg-white px-5 py-2.5 text-sm font-medium text-ink-900"
               >
                 Agendar diagnóstico
-                <ArrowRight className="h-4 w-4" aria-hidden="true" />
               </a>
             </li>
           </ul>

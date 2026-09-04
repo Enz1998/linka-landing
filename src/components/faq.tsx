@@ -1,4 +1,4 @@
-import { Plus } from "lucide-react";
+import { Reveal } from "./reveal";
 import { SectionHeading } from "./section-heading";
 
 export const faqs = [
@@ -36,22 +36,30 @@ export const faqs = [
 
 export function Faq() {
   return (
-    <section id="preguntas-frecuentes" className="scroll-mt-20 bg-surface-muted py-24 sm:py-32">
+    <section id="preguntas-frecuentes" className="scroll-mt-20 border-y border-line bg-paper-muted py-24 sm:py-28">
       <div className="mx-auto max-w-3xl px-6">
-        <SectionHeading eyebrow="FAQ" title="Preguntas frecuentes" align="left" />
+        <Reveal>
+          <SectionHeading eyebrow="FAQ" title="Preguntas frecuentes" align="left" />
+        </Reveal>
 
-        <div className="mt-12 flex flex-col divide-y divide-surface-border border-t border-b border-surface-border">
-          {faqs.map((item) => (
-            <details key={item.question} className="group py-5">
-              <summary className="flex cursor-pointer list-none items-center justify-between gap-4 text-left text-base font-medium text-ink-900 marker:content-none">
-                {item.question}
-                <Plus
-                  className="h-5 w-5 shrink-0 text-accent-indigo transition-transform group-open:rotate-45"
-                  aria-hidden="true"
-                />
-              </summary>
-              <p className="mt-3 text-sm leading-relaxed text-ink-600">{item.answer}</p>
-            </details>
+        <div className="mt-12 flex flex-col divide-y divide-line border-t border-b border-line">
+          {faqs.map((item, i) => (
+            <Reveal key={item.question} delay={i * 60}>
+              <details className="group py-5">
+                <summary className="flex cursor-pointer list-none items-center justify-between gap-6 text-left font-serif text-lg text-ink-900 marker:content-none transition-colors duration-200 group-hover:text-accent">
+                  {item.question}
+                  <span
+                    className="shrink-0 font-serif text-2xl leading-none text-accent transition-transform duration-300 group-open:rotate-45"
+                    aria-hidden="true"
+                  >
+                    +
+                  </span>
+                </summary>
+                <p className="animate-fade-in mt-3 text-sm leading-relaxed text-muted-on-paper motion-reduce:animate-none">
+                  {item.answer}
+                </p>
+              </details>
+            </Reveal>
           ))}
         </div>
       </div>

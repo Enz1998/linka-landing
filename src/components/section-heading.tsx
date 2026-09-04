@@ -18,17 +18,17 @@ export function SectionHeading({
 
   return (
     <div
-      className={`flex flex-col gap-4 ${isCenter ? "items-center text-center" : "items-start text-left"}`}
+      className={`flex flex-col gap-5 ${isCenter ? "items-center text-center" : "items-start text-left"}`}
     >
       <span
-        className={`font-mono text-xs font-medium uppercase tracking-[0.2em] ${
-          isDark ? "text-cyan-300" : "text-accent-indigo"
+        className={`text-xs font-medium tracking-[0.14em] uppercase ${
+          isDark ? "text-muted-on-dark" : "text-muted-on-paper"
         }`}
       >
         {eyebrow}
       </span>
       <h2
-        className={`max-w-2xl text-3xl font-semibold tracking-tight text-balance sm:text-4xl ${
+        className={`font-serif max-w-2xl text-3xl leading-[1.1] font-medium tracking-tight text-balance sm:text-4xl ${
           isDark ? "text-white" : "text-ink-900"
         }`}
       >
@@ -36,8 +36,8 @@ export function SectionHeading({
       </h2>
       {description ? (
         <p
-          className={`max-w-2xl text-base leading-relaxed text-pretty sm:text-lg ${
-            isDark ? "text-slate-300" : "text-ink-600"
+          className={`max-w-xl text-base leading-relaxed text-pretty ${
+            isDark ? "text-muted-on-dark" : "text-muted-on-paper"
           }`}
         >
           {description}

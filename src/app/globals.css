@@ -1,21 +1,28 @@
 @import "tailwindcss";
 
 :root {
-  --background: #ffffff;
-  --foreground: #0b1220;
+  --background: #f7f5f0;
+  --foreground: #17181c;
 
-  --ink-950: #05070d;
-  --ink-900: #0b1220;
-  --ink-800: #131c2e;
-  --ink-700: #1c283f;
-  --ink-600: #2a3653;
+  /* warm neutrals — no blue-black, no navy */
+  --ink-950: #0e0f12;
+  --ink-900: #17181c;
+  --ink-800: #202127;
+  --ink-700: #2b2c33;
+  --muted-on-paper: #5b594f;
+  --muted-on-dark: #a6a398;
 
-  --accent-indigo: #4f46e5;
-  --accent-cyan: #06b6d4;
-  --accent-amber: #f59e0b;
+  --paper: #f7f5f0;
+  --paper-muted: #ede7db;
+  --line: #e1dacb;
+  --line-dark: rgba(255, 255, 255, 0.14);
 
-  --surface-muted: #f6f7fb;
-  --surface-border: #e5e7f0;
+  /* single accent for UI (links, numerals, focus states) */
+  --accent: #423ce0;
+  --accent-on-dark: #a29cf5;
+
+  /* brand mark color — reserved for the logo only */
+  --brand: #d97b54;
 }
 
 @theme inline {
@@ -26,17 +33,78 @@
   --color-ink-900: var(--ink-900);
   --color-ink-800: var(--ink-800);
   --color-ink-700: var(--ink-700);
-  --color-ink-600: var(--ink-600);
+  --color-muted-on-paper: var(--muted-on-paper);
+  --color-muted-on-dark: var(--muted-on-dark);
 
-  --color-accent-indigo: var(--accent-indigo);
-  --color-accent-cyan: var(--accent-cyan);
-  --color-accent-amber: var(--accent-amber);
+  --color-paper: var(--paper);
+  --color-paper-muted: var(--paper-muted);
+  --color-line: var(--line);
+  --color-line-dark: var(--line-dark);
 
-  --color-surface-muted: var(--surface-muted);
-  --color-surface-border: var(--surface-border);
+  --color-accent: var(--accent);
+  --color-accent-on-dark: var(--accent-on-dark);
+  --color-brand: var(--brand);
 
-  --font-sans: var(--font-geist-sans);
-  --font-mono: var(--font-geist-mono);
+  --font-sans: var(--font-inter);
+  --font-serif: var(--font-fraunces);
+
+  --animate-marquee: marquee 26s linear infinite;
+  --animate-fade-in: fade-in 0.35s ease-out both;
+  --animate-soft-ping: soft-ping 2.6s cubic-bezier(0, 0, 0.2, 1) infinite;
+  --animate-float: float 5s ease-in-out infinite;
+  --animate-dot-pulse: dot-pulse 2.4s ease-in-out infinite;
+}
+
+@keyframes marquee {
+  from {
+    transform: translateX(0);
+  }
+  to {
+    transform: translateX(-50%);
+  }
+}
+
+@keyframes fade-in {
+  from {
+    opacity: 0;
+    transform: translateY(-4px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+@keyframes soft-ping {
+  0%,
+  60% {
+    transform: scale(1);
+    opacity: 0.45;
+  }
+  100% {
+    transform: scale(1.6);
+    opacity: 0;
+  }
+}
+
+@keyframes float {
+  0%,
+  100% {
+    transform: translateY(0);
+  }
+  50% {
+    transform: translateY(-12px);
+  }
+}
+
+@keyframes dot-pulse {
+  0%,
+  100% {
+    opacity: 0.35;
+  }
+  50% {
+    opacity: 1;
+  }
 }
 
 html {
@@ -46,40 +114,14 @@ html {
 body {
   background: var(--background);
   color: var(--foreground);
-  font-family: var(--font-sans), Arial, Helvetica, sans-serif;
+  font-family: var(--font-sans), ui-sans-serif, system-ui, sans-serif;
 }
 
 ::selection {
-  background: var(--accent-indigo);
+  background: var(--accent);
   color: white;
 }
 
-.text-gradient {
-  background-image: linear-gradient(90deg, var(--accent-indigo), var(--accent-cyan));
-  -webkit-background-clip: text;
-  background-clip: text;
-  color: transparent;
-}
-
-.bg-grid {
-  background-image:
-    linear-gradient(to right, rgba(255, 255, 255, 0.06) 1px, transparent 1px),
-    linear-gradient(to bottom, rgba(255, 255, 255, 0.06) 1px, transparent 1px);
-  background-size: 40px 40px;
-}
-
-@media (prefers-reduced-motion: no-preference) {
-  .animate-node-pulse {
-    animation: node-pulse 3s ease-in-out infinite;
-  }
-}
-
-@keyframes node-pulse {
-  0%,
-  100% {
-    opacity: 0.55;
-  }
-  50% {
-    opacity: 1;
-  }
+.font-serif {
+  font-family: var(--font-serif), Georgia, serif;
 }
